@@ -13,7 +13,7 @@ namespace AvatarStatsShowAuthor
         public const string Name = "AvatarStatsShowAuthor";
         public const string Author = "Herp Derpinstine, 404";
         public const string Company = "Lava Gang";
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
         public const string DownloadLink = "https://github.com/HerpDerpinstine/AvatarStatsShowAuthor";
     }
 
@@ -82,7 +82,7 @@ namespace AvatarStatsShowAuthor
                                                 VRC.Core.APIUser.FetchUser(authorid, new Action<VRC.Core.APIUser>((user) =>
                                                 {
                                                     QuickMenu.prop_QuickMenu_0.prop_APIUser_0 = user;
-                                                    QuickMenu.prop_QuickMenu_0.Method_Public_Void_Int32_Boolean_0(4, false);
+                                                    QuickMenu.prop_QuickMenu_0.Method_Public_Void_Int32_Boolean_1(4, false);
                                                 }), null);
                                             }
                                         }
