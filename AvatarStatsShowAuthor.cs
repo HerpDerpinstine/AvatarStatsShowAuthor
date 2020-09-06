@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using MelonLoader;
 using UnhollowerRuntimeLib;
+using System.Reflection;
 
 namespace AvatarStatsShowAuthor
 {
@@ -21,9 +22,11 @@ namespace AvatarStatsShowAuthor
     {
         private static VRC.UI.PageAvatar pageAvatar;
         private static VRC.UI.PageUserInfo pageUserInfo;
+        private MethodInfo ShowUserMethod;
 
         public override void VRChat_OnUiManagerInit()
         {
+            ShowUserMethod = typeof(QuickMenu).GetMethods().Where(it => it.GetParameters().Length == 2 && it.GetParameters()[0].ParameterType.ToString() == "System.Int32" && it.GetParameters()[1].ParameterType.ToString() == "System.Boolean").First();
             GameObject pageUserInfoObj = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo");
             if (pageUserInfoObj != null)
             {
@@ -82,7 +85,7 @@ namespace AvatarStatsShowAuthor
                                                 VRC.Core.APIUser.FetchUser(authorid, new Action<VRC.Core.APIUser>((user) =>
                                                 {
                                                     QuickMenu.prop_QuickMenu_0.prop_APIUser_0 = user;
-                                                    QuickMenu.prop_QuickMenu_0.Method_Public_Void_Int32_Boolean_1(4, false);
+                                                    ShowUserMethod.Invoke(QuickMenu.prop_QuickMenu_0, new object[] { 4, false });
                                                 }), null);
                                             }
                                         }
