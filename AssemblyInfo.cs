@@ -16,5 +16,5 @@ using MelonLoader;
 [assembly: AssemblyVersion(AvatarStatsShowAuthor.BuildInfo.Version)]
 [assembly: AssemblyFileVersion(AvatarStatsShowAuthor.BuildInfo.Version)]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonModInfo(typeof(AvatarStatsShowAuthor.AvatarStatsShowAuthor), AvatarStatsShowAuthor.BuildInfo.Name, AvatarStatsShowAuthor.BuildInfo.Version, AvatarStatsShowAuthor.BuildInfo.Author, AvatarStatsShowAuthor.BuildInfo.DownloadLink)]
-[assembly: MelonModGame("VRChat", "VRChat")]
+[assembly: MelonInfo(typeof(AvatarStatsShowAuthor.AvatarStatsShowAuthor), AvatarStatsShowAuthor.BuildInfo.Name, AvatarStatsShowAuthor.BuildInfo.Version, AvatarStatsShowAuthor.BuildInfo.Author, AvatarStatsShowAuthor.BuildInfo.DownloadLink)]
+[assembly: MelonGame("VRChat", "VRChat")]
