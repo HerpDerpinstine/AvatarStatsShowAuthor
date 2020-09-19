@@ -26,7 +26,7 @@ namespace AvatarStatsShowAuthor
 
         public override void VRChat_OnUiManagerInit()
         {
-            ShowUserMethod = typeof(QuickMenu).GetMethods().Where(it => it.GetParameters().Length == 2 && it.GetParameters()[0].ParameterType.ToString() == "System.Int32" && it.GetParameters()[1].ParameterType.ToString() == "System.Boolean").First();
+            ShowUserMethod = typeof(QuickMenu).GetMethods().Where(it => it.GetParameters().Length == 2 && !it.Name.Contains("PDM") && it.GetParameters()[0].ParameterType.ToString() == "System.Int32" && it.GetParameters()[1].ParameterType.ToString() == "System.Boolean").First();
             GameObject pageUserInfoObj = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo");
             if (pageUserInfoObj != null)
             {
