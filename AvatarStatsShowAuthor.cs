@@ -26,7 +26,7 @@ namespace AvatarStatsShowAuthor
 
         public override void VRChat_OnUiManagerInit()
         {
-            ShowUserMethod = typeof(QuickMenu).GetMethods().Where(it => it.GetParameters().Length == 2 && !it.Name.Contains("PDM") && it.GetParameters()[0].ParameterType.ToString() == "System.Int32" && it.GetParameters()[1].ParameterType.ToString() == "System.Boolean").First();
+            ShowUserMethod = typeof(QuickMenu).GetMethods().Where(it => it.GetParameters().Length == 2 && it.GetParameters()[0].ParameterType.ToString() == "System.Int32" && it.GetParameters()[1].ParameterType.ToString() == "System.Boolean").First();
             GameObject pageUserInfoObj = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo");
             if (pageUserInfoObj != null)
             {
@@ -81,7 +81,7 @@ namespace AvatarStatsShowAuthor
                                             if (!string.IsNullOrEmpty(authorid))
                                             {
                                                 HideCurrentPopup();
-                                                VRCUiManager.prop_VRCUiManager_0.Method_Public_Void_Boolean_0(true);
+                                                VRCUiManager.prop_VRCUiManager_0.Method_Public_Void_Boolean_1(true);
                                                 VRC.Core.APIUser.FetchUser(authorid, new Action<VRC.Core.APIUser>((user) =>
                                                 {
                                                     QuickMenu.prop_QuickMenu_0.prop_APIUser_0 = user;
@@ -100,13 +100,13 @@ namespace AvatarStatsShowAuthor
 
         private static void HideCurrentPopup()
         {
-            if (!VRCUiManager.prop_VRCUiManager_0.prop_Dictionary_2_String_VRCUiPage_0.ContainsKey("POPUP"))
+            if (!VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0.ContainsKey("POPUP"))
                 return;
-            VRCUiPage item = VRCUiManager.prop_VRCUiManager_0.prop_Dictionary_2_String_VRCUiPage_0["POPUP"];
+            VRCUiPage item = VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0["POPUP"];
             item.gameObject.SetActive(false);
             if (item.onPageDeactivated != null)
                 item.onPageDeactivated.Invoke();
-            VRCUiManager.prop_VRCUiManager_0.prop_Dictionary_2_String_VRCUiPage_0.Remove("POPUP");
+            VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0.Remove("POPUP");
         }
 
         private static Transform DuplicateButton(Transform baseButton, string buttonText, Vector2 posDelta)
