@@ -98,15 +98,27 @@ namespace AvatarStatsShowAuthor
             }
         }
 
+        private static MethodInfo VRCUiManager_Instance_get = null;
+        private static VRCUiManager GetVRCUiManager()
+        {
+            if (VRCUiManager_Instance_get == null)
+                VRCUiManager_Instance_get = typeof(VRCUiManager).GetMethods().First(x => (x.ReturnType == typeof(VRCUiManager)));
+            if (VRCUiManager_Instance_get == null)
+                return null;
+            return (VRCUiManager)VRCUiManager_Instance_get.Invoke(null, new object[0]);
+        }
         private static void HideCurrentPopup()
         {
-            if (!VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0.ContainsKey("POPUP"))
+            VRCUiManager vRCUiManager = GetVRCUiManager();
+            if (vRCUiManager == null)
                 return;
-            VRCUiPage item = VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0["POPUP"];
+            if (!vRCUiManager.field_Internal_Dictionary_2_String_VRCUiPage_0.ContainsKey("POPUP"))
+                return;
+            VRCUiPage item = vRCUiManager.field_Internal_Dictionary_2_String_VRCUiPage_0["POPUP"];
             item.gameObject.SetActive(false);
             if (item.onPageDeactivated != null)
                 item.onPageDeactivated.Invoke();
-            VRCUiManager.prop_VRCUiManager_0.field_Internal_Dictionary_2_String_VRCUiPage_0.Remove("POPUP");
+            vRCUiManager.field_Internal_Dictionary_2_String_VRCUiPage_0.Remove("POPUP");
         }
 
         private static Transform DuplicateButton(Transform baseButton, string buttonText, Vector2 posDelta)
