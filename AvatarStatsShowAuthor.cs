@@ -72,9 +72,9 @@ namespace AvatarStatsShowAuthor
                                 Button showcreatorbutton = showcreatorbutton_trans.GetComponent<Button>();
                                 showcreatorbutton.onClick = new Button.ButtonClickedEvent();
                                 showcreatorbutton.onClick.AddListener(DelegateSupport.ConvertDelegate<UnityAction>(new Action(() => {
-                                    if ((pageUserInfo != null) && (pageAvatar != null) && (pageAvatar.avatar != null))
+                                    if ((pageUserInfo != null) && (pageAvatar != null) && (pageAvatar.field_Public_SimpleAvatarPedestal_0 != null))
                                     {
-                                        VRC.Core.ApiAvatar currentApiAvatar = pageAvatar.avatar.field_Internal_ApiAvatar_0;
+                                        VRC.Core.ApiAvatar currentApiAvatar = pageAvatar.field_Public_SimpleAvatarPedestal_0.field_Internal_ApiAvatar_0;
                                         if (currentApiAvatar != null)
                                         {
                                             string authorid = currentApiAvatar.authorId;
@@ -116,8 +116,8 @@ namespace AvatarStatsShowAuthor
                 return;
             VRCUiPage item = vRCUiManager.field_Internal_Dictionary_2_String_VRCUiPage_0["POPUP"];
             item.gameObject.SetActive(false);
-            if (item.onPageDeactivated != null)
-                item.onPageDeactivated.Invoke();
+            if (item.field_Public_Action_1 != null)
+                item.field_Public_Action_1.Invoke();
             vRCUiManager.field_Internal_Dictionary_2_String_VRCUiPage_0.Remove("POPUP");
         }
 
